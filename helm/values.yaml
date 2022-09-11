@@ -37,7 +37,7 @@ services:
 ##
 image: 
   name: netflyer/helloworld
-  tag: f98d5fd
+  tag: v1.2
   pullPolicy: IfNotPresent
 # imagePullSecrets: registryCreds
 replicas: 1
