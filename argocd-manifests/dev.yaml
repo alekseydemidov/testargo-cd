@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: helloworld-dev
+  namespace: helloworld-dev
+  labels:
+    name: helloworld-dev
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/alekseydemidov/testargo-cd'
+    path: helm
+    targetRevision: dev
+    helm:
+      parameters:
+        - name: ingress.host
+          value: helloworld-dev.example.com
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: helloworld-dev
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace=true
+  revisionHistoryLimit: 3
